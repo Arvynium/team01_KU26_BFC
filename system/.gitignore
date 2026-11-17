@@ -1,0 +1,8 @@
+/core
+/core.*
+__pycache__/
+flag.txt
+/tests
+*.py
+*.gdb_history
+/build/

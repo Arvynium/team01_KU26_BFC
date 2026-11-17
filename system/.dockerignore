@@ -1,0 +1,9 @@
+**/.git
+**/__pycache__
+core
+core.*
+flag.txt
+/tests
+*.py
+*.gdb_history
+/build/

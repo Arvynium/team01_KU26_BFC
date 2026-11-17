@@ -6,7 +6,7 @@ Use AI and security analysis tools to identify vulnerabilities in the provided s
 
 **Period**: November 17 (Tue) 2:00 p.m. ~ November 21 (Sat) 11:59 p.m.
 
-**BFC URL :** https://github.com/tacose354/COSE354-01-2026-Bug-Finding-Challenge
+**BFC URL :** https://github.com/tacose354/KU26_BFC
 
 **WEB Challenge URL** : http://ccslab.asuscomm.com:26354/
 
@@ -19,7 +19,7 @@ Each team must submit **private vulnerability reports** through GitHub.
 ### Security Report
 
 **Due date:** **Saturday, November 21, 2026 11:59:00 PM KST
-URL:** https://github.com/tacose354/BFC26
+URL:** https://github.com/tacose354/KU26_BFC/security
 
 - Use the title format: `[Team 03] Buffer Overflow(brief vulnerability name)`.
 - Include the full names of all team members.

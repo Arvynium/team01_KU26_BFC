@@ -1,0 +1,63 @@
+FROM python:3.12-slim AS builder
+
+WORKDIR /src
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        autoconf \
+        automake \
+        ca-certificates \
+        libfontconfig1-dev \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+        libtiff-dev \
+        pkg-config \
+        zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY third_party/ghostscript-10.03.0 /src/ghostscript-10.03.0
+
+RUN cd /src/ghostscript-10.03.0/contrib/opvp \
+    && gcc -Werror -Wall -c -fpic -g opvpharness.c \
+    && gcc -shared -o libopv.so opvpharness.o
+
+WORKDIR /src/ghostscript-10.03.0
+RUN chmod +x autogen.sh \
+    && NOCONFIGURE=1 ./autogen.sh \
+    && ./configure --prefix=/opt/ghostscript --disable-cups --without-x --without-libtiff \
+    && make -j"$(nproc)" \
+    && make install \
+    && /opt/ghostscript/bin/gs --version
+
+FROM python:3.12-slim
+
+ENV PATH="/opt/ghostscript/bin:${PATH}" \
+    LD_LIBRARY_PATH="/opt/ghostscript/lib"
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        libfontconfig1 \
+        libfreetype6 \
+        libjpeg62-turbo \
+        libpng16-16 \
+        libtiff6 \
+        zlib1g \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /opt/ghostscript /opt/ghostscript
+RUN mkdir -p /opt/bfc/lib
+COPY --from=builder /src/ghostscript-10.03.0/contrib/opvp/libopv.so /opt/bfc/lib/libopv.so
+COPY backend/requirements.lock /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt \
+    && useradd --create-home --uid 10001 bfcworker
+
+COPY services/__init__.py services/manual_worker.py /app/services/
+
+USER bfcworker
+EXPOSE 8085
+CMD ["uvicorn", "services.manual_worker:app", "--host", "0.0.0.0", "--port", "8085"]

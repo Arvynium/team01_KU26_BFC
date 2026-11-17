@@ -1,0 +1,11 @@
+*
+!backend
+!backend/requirements.lock
+!scripts
+!scripts/normalize_native_scripts.py
+!services
+!services/__init__.py
+!services/manual_worker.py
+!third_party
+!third_party/ghostscript-10.03.0
+!third_party/ghostscript-10.03.0/**

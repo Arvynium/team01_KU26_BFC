@@ -1,0 +1,13 @@
+*
+!backend
+!backend/requirements.lock
+!scripts
+!scripts/normalize_native_scripts.py
+!services
+!services/__init__.py
+!services/photo_worker.py
+!public
+!public/relay-gear.png
+!third_party
+!third_party/ImageMagick-6.9.3-9
+!third_party/ImageMagick-6.9.3-9/**

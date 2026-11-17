@@ -1,0 +1,6 @@
+*
+!backend
+!backend/requirements.lock
+!services
+!services/__init__.py
+!services/package_worker.py

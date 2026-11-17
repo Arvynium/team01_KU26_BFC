@@ -1,9 +1,0 @@
-*.ac text eol=lf
-*.m4 text eol=lf
-*.sh text eol=lf
-*.in text eol=lf
-**/configure text eol=lf
-**/config.guess text eol=lf
-**/config.sub text eol=lf
-**/Makefile text eol=lf
-Dockerfile* text eol=lf

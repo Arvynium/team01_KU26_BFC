@@ -16,13 +16,12 @@ Students must submit their findings through GitHub's **Security â†’ Advisories â
 
 **Submission Guidelines:**
 
-- Submit **one report per team**.
-- Use the title format: `[Team 03] Bug Finding Challenge Report`.
+- Each team must submit **private vulnerability reports** through GitHub.
+- Use the title format: `[Team 03] Buffer Overflow(brief vulnerability name)`.
 - Include the full names of all team members.
 - For **each of the Web and System projects**, report **4 in-house code vulnerabilities** and **at least 2 OSS vulnerabilities**, for a total of **8 in-house code vulnerabilities and at least 4 OSS vulnerabilities (at least 12 findings overall)**.
-- Include all findings in **one report per team**, clearly organized by project (**Web / System**) and numbered as **Finding 1, Finding 2**, and so on.
 - For each finding, include the vulnerable code, root cause, reproduction steps, exploitation evidence, security impact, and recommended mitigation.
-- GitHub vulnerability report deadline: November 21, 2026, at 23:59:59 KST
+- GitHub vulnerability reports deadline: November 21, 2026, at 23:59:59 KST
 
 ### Vulnerability Reporting Template
 ```

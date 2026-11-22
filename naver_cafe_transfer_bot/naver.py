@@ -38,10 +38,15 @@ class CafeArticle:
     cafe_name: str
     cafe_url: str
     body: str = ""
+    writer: str = ""
+    menu_name: str = ""
+    key_override: str = ""
 
     @property
     def key(self) -> str:
         """중복 판단용 키: 'cafe아이디/글번호' (쿼리스트링/프로토콜 차이 무시)."""
+        if self.key_override:
+            return self.key_override
         parsed = _parse_article_link(self.link)
         if parsed:
             return f"{parsed[0]}/{parsed[1]}"

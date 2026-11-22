@@ -2,7 +2,26 @@
 # 이 파일을 config.toml 로 복사한 뒤 원하는 대로 수정하세요.
 # (API 키/토큰 같은 비밀값은 여기 말고 .env 에 넣습니다)
 
+[cafe]
+# ▶ 메인 수집 경로: 내 로그인 쿠키(.env 의 NAVER_COOKIE)로 카페 게시판을 직접 읽습니다.
+#   내가 가입한 카페라면 멤버 공개 글도 읽을 수 있어요.
+# cafe     : 카페 주소 아이디(cafe.naver.com/여기) 또는 숫자 clubid
+# menu_ids : 볼 게시판 번호 목록. 게시판 클릭 시 주소의 menuid=숫자 / menus/숫자. 비우면 전체글보기.
+# name     : 텔레그램에 표시할 이름 (선택)
+boards = [
+  # { cafe = "mycafe123", menu_ids = [15], name = "우리동네 양도게시판" },
+  # { cafe = "12345678", menu_ids = [] },
+]
+# 게시판마다 한 번에 볼 페이지 수 / 페이지당 글 수 (이미 본 글을 만나면 거기서 멈춥니다)
+pages_per_board = 2
+per_page = 50
+# 요청 사이에 쉬는 시간(초), 이 범위 안에서 무작위로 쉽니다
+min_delay = 1.5
+max_delay = 4.0
+
 [search]
+# (선택) 공식 네이버 검색 API 도 같이 쓰려면 true + .env 에 NAVER_CLIENT_ID/SECRET
+enabled = false
 # 네이버 검색 API(카페글)로 검색할 검색어 목록.
 # 양도하려는 대상(예: "필라테스", "PT", "헬스", "골프 레슨", "콘서트")을 붙이면 정확도가 올라갑니다.
 queries = [

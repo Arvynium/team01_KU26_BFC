@@ -19,6 +19,15 @@ class SeenStore:
                    seen_at TEXT
                )"""
         )
+        self.conn.execute("CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT)")
+        self.conn.commit()
+
+    def get_meta(self, k: str) -> str | None:
+        row = self.conn.execute("SELECT v FROM meta WHERE k = ?", (k,)).fetchone()
+        return row[0] if row else None
+
+    def set_meta(self, k: str, v: str) -> None:
+        self.conn.execute("INSERT OR REPLACE INTO meta VALUES (?, ?)", (k, v))
         self.conn.commit()
 
     def has(self, key: str) -> bool:

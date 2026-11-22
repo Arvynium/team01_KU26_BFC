@@ -64,7 +64,7 @@ def format_article(article, verdict) -> str:
         summary = summary[:300] + "…"
     lines = [
         f"📢 <b>{e(article.title)}</b>",
-        f"☕ {e(article.cafe_name)}",
+        "☕ " + " · ".join(e(x) for x in (article.cafe_name, article.menu_name, article.writer) if x),
         "",
         e(summary),
         "",
